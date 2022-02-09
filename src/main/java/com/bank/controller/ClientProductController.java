@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,6 +40,12 @@ public class ClientProductController {
 		return clientProductService.findAll();
 	}
 	
+	@DeleteMapping("/{id}")
+	void deleteProduct(@PathVariable String id){
+
+		clientProductService.deleteById(id);
+	}
+	
 	@PostMapping("/save")
 	public Mono<ClientProduct> save(@RequestParam("idclient") String idclient,
 			@RequestParam("typeclient") String typeclient,
@@ -46,7 +53,6 @@ public class ClientProductController {
 		
 			Client objClient= new Client(idclient,typeclient);
 			Mono<Client> objClients=Mono.just(objClient);
-			
 			
 			Product objProduct=new Product(idproduct,typeproduct);
 		
@@ -56,9 +62,23 @@ public class ClientProductController {
 			objClientProduct.setClient(objClients);
 			objClientProduct.setProduct(objProducts);
 			
+			//
+			/*Flux<ClientProduct> AllClientProduct= clientProductService.findAll();
+			AllClientProduct.filter(e->{
+					e.getClient().filter(o->{
+						
+						return o.getId().equals(idclient);
+					});
+				return true;
+			})
+			.map(e->{
+				
+			})
+			.subscribe();*/
 			
 			
-		return clientProductService.save(objClientProduct);
+			return clientProductService.save(objClientProduct);
+		
 	}
 	
 	

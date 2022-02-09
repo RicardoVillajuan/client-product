@@ -13,7 +13,9 @@ public interface IClientProduct {
 	
 	void deleteById(String id);
 	
-	
-	
 	Flux<ClientProduct> findAll();
+	
+	Flux<ClientProduct> findByIdClient(String idclient);
+	
+	
 }

@@ -36,13 +36,19 @@ public class ClientProductdb implements IClientProduct{
 	@Override
 	public void deleteById(String id) {
 		// TODO Auto-generated method stub
-		
+		repoClientProduct.deleteById(id).subscribe();
 	}
 
 	@Override
 	public Flux<ClientProduct> findAll() {
 		// TODO Auto-generated method stub
 		return repoClientProduct.findAll();
+	}
+
+	@Override
+	public Flux<ClientProduct> findByIdClient(String idclient) {
+		// TODO Auto-generated method stub
+		return repoClientProduct.findByClient(idclient);
 	}
 
 	
