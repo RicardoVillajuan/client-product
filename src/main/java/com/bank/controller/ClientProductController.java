@@ -39,14 +39,26 @@ public class ClientProductController {
 		return clientProductService.findAll();
 	}
 	
-	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public Mono<ClientProduct> save(@RequestParam Client client, @RequestParam("idproducto") String idproducto){
+	@PostMapping("/save")
+	public Mono<ClientProduct> save(@RequestParam("idclient") String idclient,
+			@RequestParam("typeclient") String typeclient,
+			@RequestParam("typeproduct") String typeproduct, @RequestParam("idproduct") String idproduct){
 		
+			Client objClient= new Client(idclient,typeclient);
+			Mono<Client> objClients=Mono.just(objClient);
+			
+			
+			Product objProduct=new Product(idproduct,typeproduct);
 		
-		
-		
-		return null;
+			Mono<Product> objProducts=Mono.just(objProduct);
+			
+			ClientProduct objClientProduct=new ClientProduct();
+			objClientProduct.setClient(objClients);
+			objClientProduct.setProduct(objProducts);
+			
+			
+			
+		return clientProductService.save(objClientProduct);
 	}
 	
 	

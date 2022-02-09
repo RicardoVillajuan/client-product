@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Client {
 	
-	private String name;
-	private String email;
+	private String id;
 	private String typeclient;
 }
