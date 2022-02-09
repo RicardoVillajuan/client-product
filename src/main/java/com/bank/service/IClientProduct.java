@@ -13,10 +13,7 @@ public interface IClientProduct {
 	
 	void deleteById(String id);
 	
-	//MEtodos de otros microservicios
-	//Flux<Product> findByIdProduct(String idproduct);
 	
-	//Mono<Client> findByClient(String idclient);
 	
-	Flux<Product> findProductAll();
+	Flux<ClientProduct> findAll();
 }

@@ -40,9 +40,9 @@ public class ClientProductdb implements IClientProduct{
 	}
 
 	@Override
-	public Flux<Product> findProductAll() {
+	public Flux<ClientProduct> findAll() {
 		// TODO Auto-generated method stub
-		return restTemplate.getForObject("http://localhost:8081/product/listproduct",Flux.class);
+		return repoClientProduct.findAll();
 	}
 
 	
